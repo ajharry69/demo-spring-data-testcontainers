@@ -1,5 +1,7 @@
 package com.example.xentlyspringdatatestcontainers.datasources
 
+import com.example.xentlyspringdatatestcontainers.ELASTICSEARCH_CONTAINER
+import com.example.xentlyspringdatatestcontainers.POSTGRESQL_CONTAINER
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import com.example.xentlyspringdatatestcontainers.repositories.BrandSqlRepository
 import org.junit.jupiter.api.Assertions.*
@@ -8,11 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
-import org.testcontainers.containers.PostgreSQLContainer
-import org.testcontainers.elasticsearch.ElasticsearchContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import org.testcontainers.utility.DockerImageName
 
 @SpringBootTest
 @Testcontainers
@@ -22,13 +21,10 @@ class BrandSqlDataSourceTest {
 
     companion object {
         @Container
-        val postgresContainer = DockerImageName.parse("postgis/postgis:15-3.3-alpine")
-            .asCompatibleSubstituteFor("postgres")
-            .run { PostgreSQLContainer(this) }
+        val postgresContainer = POSTGRESQL_CONTAINER
 
         @Container
-        val elasticsearchContainer = DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10")
-            .run { ElasticsearchContainer(this) }
+        val elasticsearchContainer = ELASTICSEARCH_CONTAINER
 
         @JvmStatic
         @DynamicPropertySource

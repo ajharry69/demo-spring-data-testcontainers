@@ -9,22 +9,31 @@ import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 import org.testcontainers.utility.DockerImageName
 
+
+val POSTGRESQL_CONTAINER: PostgreSQLContainer<*> = DockerImageName.parse("postgis/postgis:15-3.3-alpine")
+    .asCompatibleSubstituteFor("postgres")
+    .run { PostgreSQLContainer(this) }
+
+val ELASTICSEARCH_CONTAINER: ElasticsearchContainer =
+    DockerImageName.parse("ajharry69/dynamic-synonym-elasticsearch:8.7.1")
+        .asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch:8.7.1")
+        .run { ElasticsearchContainer(this) }
+        .withEnv("xpack.security.enabled", "false")
+        .withEnv("xpack.security.http.ssl.enabled", "false")
+
 @TestConfiguration(proxyBeanMethods = false)
 class TestXentlySpringDataTestcontainersApplication {
 
     @Bean
     @ServiceConnection
     fun elasticsearchContainer(): ElasticsearchContainer {
-        return DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10")
-            .run { ElasticsearchContainer(this) }
+        return ELASTICSEARCH_CONTAINER
     }
 
     @Bean
     @ServiceConnection
     fun postgresContainer(): PostgreSQLContainer<*> {
-        return DockerImageName.parse("postgis/postgis:15-3.3-alpine").asCompatibleSubstituteFor("postgres").run {
-            PostgreSQLContainer(this)
-        }
+        return POSTGRESQL_CONTAINER
     }
 
 }
