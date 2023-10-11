@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.elasticsearch.ElasticsearchContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import org.testcontainers.utility.DockerImageName
@@ -22,9 +23,12 @@ class BrandSqlDataSourceTest {
     companion object {
         @Container
         val postgresContainer = DockerImageName.parse("postgis/postgis:15-3.3-alpine")
-            .asCompatibleSubstituteFor("postgres").run {
-                PostgreSQLContainer(this)
-            }
+            .asCompatibleSubstituteFor("postgres")
+            .run { PostgreSQLContainer(this) }
+
+        @Container
+        val elasticsearchContainer = DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.10")
+            .run { ElasticsearchContainer(this) }
 
         @JvmStatic
         @DynamicPropertySource
@@ -32,8 +36,11 @@ class BrandSqlDataSourceTest {
             registry.add("spring.datasource.url", postgresContainer::getJdbcUrl)
             registry.add("spring.datasource.username", postgresContainer::getUsername)
             registry.add("spring.datasource.password", postgresContainer::getPassword)
+
             registry.add("spring.flyway.user", postgresContainer::getUsername)
             registry.add("spring.flyway.password", postgresContainer::getPassword)
+
+            registry.add("spring.elasticsearch.uris", elasticsearchContainer::getHttpHostAddress)
         }
     }
 

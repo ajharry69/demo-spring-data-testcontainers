@@ -1,0 +1,59 @@
+{
+  "index": {
+    "max_ngram_diff": 13,
+    "query": {
+      "default_field": [
+        "name^4",
+        "name.english^3",
+        "name.edge_ngram^2",
+        "name.ngram"
+      ]
+    }
+  },
+  "analysis": {
+    "analyzer": {
+      "ngram_analyzer": {
+        "type": "custom",
+        "tokenizer": "whitespace",
+        "char_filter": [
+          "html_strip"
+        ],
+        "filter": [
+          "apostrophe",
+          "lowercase",
+          "unique",
+          "stop",
+          "kstem",
+          "ngram_token_filter"
+        ]
+      },
+      "edge_ngram_analyzer": {
+        "type": "custom",
+        "tokenizer": "whitespace",
+        "char_filter": [
+          "html_strip"
+        ],
+        "filter": [
+          "apostrophe",
+          "lowercase",
+          "unique",
+          "stop",
+          "kstem",
+          "edge_ngram_token_filter"
+        ]
+      }
+    },
+    "filter": {
+      "ngram_token_filter": {
+        "type": "ngram",
+        "min_gram": 2,
+        "max_gram": 15
+      },
+      "edge_ngram_token_filter": {
+        "type": "edge_ngram",
+        "min_gram": 2,
+        "max_gram": 15
+      }
+    }
+  }
+}

@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable
 
 interface BrandDataSource {
     fun save(brands: Iterable<Brand>): Iterable<Brand>
-    fun get(pageable: Pageable): Page<Brand>
-    fun get(query: String, pageable: Pageable): Page<Brand>
+    fun get(query: String?, pageable: Pageable): Page<Brand>
     fun get(slug: String): Brand?
 }

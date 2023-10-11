@@ -1,0 +1,131 @@
+POST http://localhost:8080/api/v1/brands/batch
+Content-Type: application/json
+
+[
+{
+  "name": "Anker {{$random.alphabetic(5)}}"
+},
+{
+  "name": "Anker {{$random.alphabetic(5)}}"
+},
+  {
+    "name": "Asus"
+  },
+  {
+    "name": "Nivea"
+  },
+  {
+    "name": "Ndhiwa"
+  },
+  {
+    "name": "Ushindi"
+  },
+  {
+    "name": "Pepsodent"
+  },
+  {
+    "name": "Colgate"
+  },
+  {
+    "name": "Geisha"
+  },
+  {
+    "name": "Harpic"
+  },
+  {
+    "name": "Phoenix"
+  },
+  {
+    "name": "Vaseline"
+  },
+  {
+    "name": "Field of Africa"
+  },
+  {
+    "name": "Logitech"
+  },
+  {
+    "name": "Epson"
+  },
+  {
+    "name": "Von"
+  },
+  {
+    "name": "Lego"
+  },
+  {
+    "name": "Canon"
+  },
+  {
+    "name": "Lenovo"
+  },
+  {
+    "name": "Microsoft"
+  },
+  {
+    "name": "Pelikan"
+  },
+  {
+    "name": "Brother"
+  },
+  {
+    "name": "LG"
+  },
+  {
+    "name": "HP"
+  },
+  {
+    "name": "HP"
+  },
+  {
+    "name": "Dell"
+  },
+  {
+    "name": "Apple"
+  },
+  {
+    "name": "Cocacola"
+  },
+  {
+    "name": "Pepsi"
+  },
+  {
+    "name": "Hanan"
+  },
+  {
+    "name": "Velvex"
+  },
+  {
+    "name": "Sony"
+  },
+  {
+    "name": "Vaseline"
+  },
+  {
+    "name": "Powermax"
+  },
+  {
+    "name": "Havel"
+  },
+  {
+    "name": "Von"
+  },
+  {
+    "name": "TCL"
+  },
+  {
+    "name": "Haier"
+  },
+  {
+    "name": "Samsung"
+  },
+  {
+    "name": "Tenda"
+  },
+  {
+    "name": "Tecno"
+  },
+  {
+    "name": "Huawei"
+  }
+]
