@@ -1,5 +1,6 @@
 package com.example.xentlyspringdatatestcontainers
 
+import org.springframework.boot.devtools.restart.RestartScope
 import org.springframework.boot.fromApplication
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection
@@ -21,16 +22,21 @@ val ELASTICSEARCH_CONTAINER: ElasticsearchContainer =
         .withEnv("xpack.security.enabled", "false")
         .withEnv("xpack.security.http.ssl.enabled", "false")
 
+/**
+ * Ref: https://docs.spring.io/spring-boot/docs/3.1.4/reference/htmlsingle/#features.testing.testcontainers
+ */
 @TestConfiguration(proxyBeanMethods = false)
 class TestXentlySpringDataTestcontainersApplication {
 
     @Bean
+    @RestartScope
     @ServiceConnection
     fun elasticsearchContainer(): ElasticsearchContainer {
         return ELASTICSEARCH_CONTAINER
     }
 
     @Bean
+    @RestartScope
     @ServiceConnection
     fun postgresContainer(): PostgreSQLContainer<*> {
         return POSTGRESQL_CONTAINER

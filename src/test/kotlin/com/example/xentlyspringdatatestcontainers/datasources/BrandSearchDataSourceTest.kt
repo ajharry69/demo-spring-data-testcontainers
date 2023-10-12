@@ -1,7 +1,7 @@
 package com.example.xentlyspringdatatestcontainers.datasources
 
 import com.example.xentlyspringdatatestcontainers.models.Brand
-import com.example.xentlyspringdatatestcontainers.repositories.BrandSqlRepository
+import com.example.xentlyspringdatatestcontainers.repositories.BrandSearchRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -15,19 +15,18 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import java.util.*
 
-
-class BrandSqlDataSourceTest {
+class BrandSearchDataSourceTest {
     @Nested
     inner class Save {
         @Test
         fun `auto-generates slugs if not present`() {
-            val repository = Mockito.mock(BrandSqlRepository::class.java)
-            val dataSource = BrandSqlDataSource(repository)
-            val brands = listOf(Brand.Entity(name = "Brand"))
+            val repository = Mockito.mock(BrandSearchRepository::class.java)
+            val dataSource = BrandSearchDataSource(repository)
+            val brands = listOf(Brand.Document(name = "Brand", slug = "brand"))
 
             dataSource.save(brands)
 
-            val argumentCaptor = argumentCaptor<List<Brand.Entity>>()
+            val argumentCaptor = argumentCaptor<List<Brand.Document>>()
             Mockito.verify(repository).saveAll(argumentCaptor.capture())
 
             Assertions.assertIterableEquals(
@@ -38,13 +37,13 @@ class BrandSqlDataSourceTest {
 
         @Test
         fun `retains non-blank slugs`() {
-            val repository = Mockito.mock(BrandSqlRepository::class.java)
-            val dataSource = BrandSqlDataSource(repository)
-            val brands = listOf(Brand.Entity(name = "Brand", slug = "example"))
+            val repository = Mockito.mock(BrandSearchRepository::class.java)
+            val dataSource = BrandSearchDataSource(repository)
+            val brands = listOf(Brand.Document(name = "Brand", slug = "example"))
 
             dataSource.save(brands)
 
-            val argumentCaptor = argumentCaptor<List<Brand.Entity>>()
+            val argumentCaptor = argumentCaptor<List<Brand.Document>>()
             Mockito.verify(repository).saveAll(argumentCaptor.capture())
 
             Assertions.assertIterableEquals(
@@ -61,10 +60,10 @@ class BrandSqlDataSourceTest {
         @EmptySource
         @ValueSource(strings = ["      "])
         fun `findAll is called if query is null or blank`(query: String?) {
-            val repository = Mockito.mock(BrandSqlRepository::class.java)
+            val repository = Mockito.mock(BrandSearchRepository::class.java)
             Mockito.`when`(repository.findAll(Mockito.any<Pageable>()))
                 .thenReturn(Page.empty())
-            val dataSource = BrandSqlDataSource(repository)
+            val dataSource = BrandSearchDataSource(repository)
 
             dataSource.get(query, Pageable.unpaged())
 
@@ -73,30 +72,30 @@ class BrandSqlDataSourceTest {
         }
 
         @Test
-        fun `findAllByNameContainingIgnoreCase is called if query is neither null or blank`() {
+        fun `findAll is called if query is neither null or blank`() {
             val query = "example"
             val pageable = Pageable.unpaged()
-            val repository = Mockito.mock(BrandSqlRepository::class.java)
-            Mockito.`when`(repository.findAllByNameContainingIgnoreCase(query, pageable))
+            val repository = Mockito.mock(BrandSearchRepository::class.java)
+            Mockito.`when`(repository.findAll(query, pageable))
                 .thenReturn(Page.empty())
-            val dataSource = BrandSqlDataSource(repository)
+            val dataSource = BrandSearchDataSource(repository)
 
             dataSource.get(query, pageable)
 
             val queryArgumentCaptor = argumentCaptor<String>()
             val pageableArgumentCaptor = argumentCaptor<Pageable>()
             Mockito.verify(repository, Mockito.atMostOnce())
-                .findAllByNameContainingIgnoreCase(queryArgumentCaptor.capture(), pageableArgumentCaptor.capture())
+                .findAll(queryArgumentCaptor.capture(), pageableArgumentCaptor.capture())
         }
     }
 
     @Test
     fun `get calls findById`() {
         val slug = "example"
-        val repository = Mockito.mock(BrandSqlRepository::class.java)
+        val repository = Mockito.mock(BrandSearchRepository::class.java)
         Mockito.`when`(repository.findById(slug))
             .thenReturn(Optional.ofNullable(null))
-        val dataSource = BrandSqlDataSource(repository)
+        val dataSource = BrandSearchDataSource(repository)
 
         dataSource.get(slug)
 

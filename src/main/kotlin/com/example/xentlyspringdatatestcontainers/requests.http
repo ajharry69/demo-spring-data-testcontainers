@@ -8,6 +8,39 @@ Content-Type: application/json
 {
   "name": "Anker {{$random.alphabetic(5)}}"
 },
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
+{
+  "name": "{{$random.alphabetic(5)}} {{$random.alphabetic(5)}}"
+},
   {
     "name": "Asus"
   },
