@@ -23,7 +23,7 @@ class BrandController(
         .let(assembler::toModel)
         .run { ResponseEntity.created(getRequiredLink(IanaLinkRelations.SELF).toUri()).body(this) }
 
-    @PostMapping("/batch")
+    @PostMapping("/bulk")
     fun save(@RequestBody brands: List<Brand.View>) = service.save(brands)
         .let(assembler::toCollectionModel)
         .run { ResponseEntity.status(HttpStatus.CREATED).body(this) }

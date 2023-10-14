@@ -1,13 +1,14 @@
 package com.example.xentlyspringdatatestcontainers.datasources
 
+import com.example.xentlyspringdatatestcontainers.ResponseType
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import com.example.xentlyspringdatatestcontainers.repositories.BrandSearchRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EmptySource
-import org.junit.jupiter.params.provider.NullSource
+import org.junit.jupiter.params.provider.EnumSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import org.mockito.Mockito
 import org.mockito.kotlin.argumentCaptor
@@ -35,11 +36,17 @@ class BrandSearchDataSourceTest {
             )
         }
 
-        @Test
-        fun `retains non-blank slugs`() {
+        @ParameterizedTest
+        @EnumSource(names = ["Document", "Entity", "View"])
+        fun `retains non-blank slugs`(responseType: ResponseType) {
             val repository = Mockito.mock(BrandSearchRepository::class.java)
             val dataSource = BrandSearchDataSource(repository)
-            val brands = listOf(Brand.Document(name = "Brand", slug = "example"))
+            val brand = when (responseType) {
+                ResponseType.Document -> Brand.Document(name = "Example", slug = "example")
+                ResponseType.Entity -> Brand.Entity(name = "Example", slug = "example")
+                ResponseType.View -> Brand.View(name = "Example", slug = "example")
+            }
+            val brands = listOf(brand)
 
             dataSource.save(brands)
 
@@ -56,8 +63,7 @@ class BrandSearchDataSourceTest {
     @Nested
     inner class GetMultiple {
         @ParameterizedTest
-        @NullSource
-        @EmptySource
+        @NullAndEmptySource
         @ValueSource(strings = ["      "])
         fun `findAll is called if query is null or blank`(query: String?) {
             val repository = Mockito.mock(BrandSearchRepository::class.java)

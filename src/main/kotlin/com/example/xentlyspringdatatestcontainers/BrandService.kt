@@ -22,6 +22,6 @@ class BrandService(private val repository: BrandRepository) {
 
     fun get(slug: String): Brand.View {
         return repository.get(slug)?.toView()
-            ?: throw BrandNotFoundException(slug)
+            ?: throw BrandNotFoundException()
     }
 }

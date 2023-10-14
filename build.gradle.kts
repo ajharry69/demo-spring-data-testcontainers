@@ -36,6 +36,10 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+//    testImplementation("io.rest-assured:spring-mock-mvc:5.3.2")
+//    testImplementation("io.rest-assured:spring-web-test-client:5.3.2")
+//    testImplementation("io.rest-assured:kotlin-extensions:5.3.2")
+//    testImplementation("io.rest-assured:json-path:5.3.2")
 }
 
 tasks.withType<KotlinCompile> {

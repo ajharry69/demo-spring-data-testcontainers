@@ -8,8 +8,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EmptySource
-import org.junit.jupiter.params.provider.NullSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import org.mockito.Mockito
 import org.mockito.kotlin.argumentCaptor
@@ -22,8 +21,7 @@ class BrandRepositoryTest {
     @DisplayName("get pageable response optionally filtered by query string")
     inner class GetMultiple {
         @ParameterizedTest
-        @NullSource
-        @EmptySource
+        @NullAndEmptySource
         @ValueSource(strings = ["      ", "example"])
         fun `returns result from search optimised db if not empty`(query: String?) {
             val pageable = Pageable.unpaged()
@@ -43,8 +41,7 @@ class BrandRepositoryTest {
         }
 
         @ParameterizedTest
-        @NullSource
-        @EmptySource
+        @NullAndEmptySource
         @ValueSource(strings = ["      ", "example"])
         fun `fallback to sql db result if search optimised db is empty`(query: String?) {
             val pageable = Pageable.unpaged()

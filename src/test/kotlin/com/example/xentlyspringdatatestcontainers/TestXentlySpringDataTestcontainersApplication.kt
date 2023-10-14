@@ -21,6 +21,8 @@ val ELASTICSEARCH_CONTAINER: ElasticsearchContainer =
         .run { ElasticsearchContainer(this) }
         .withEnv("xpack.security.enabled", "false")
         .withEnv("xpack.security.http.ssl.enabled", "false")
+        .withEnv("ES_JAVA_OPTS", "-Xms1g -Xmx1g")
+        .withSharedMemorySize(1L * 1_024 * 1_024)
 
 /**
  * Ref: https://docs.spring.io/spring-boot/docs/3.1.4/reference/htmlsingle/#features.testing.testcontainers
