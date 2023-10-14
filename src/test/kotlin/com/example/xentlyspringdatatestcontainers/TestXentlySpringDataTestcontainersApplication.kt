@@ -48,6 +48,7 @@ class TestXentlySpringDataTestcontainersApplication {
 
 
 fun main(args: Array<String>) {
-    fromApplication<XentlySpringDataTestcontainersApplication>().with(TestXentlySpringDataTestcontainersApplication::class)
+    fromApplication<XentlySpringDataTestcontainersApplication>()
+        .with(TestXentlySpringDataTestcontainersApplication::class)
         .run(*args)
 }
