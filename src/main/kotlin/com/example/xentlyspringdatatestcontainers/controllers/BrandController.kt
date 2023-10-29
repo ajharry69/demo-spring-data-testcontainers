@@ -1,6 +1,7 @@
 package com.example.xentlyspringdatatestcontainers.controllers
 
-import com.example.xentlyspringdatatestcontainers.BrandService
+import com.example.xentlyspringdatatestcontainers.controllers.assemblers.BrandAssembler
+import com.example.xentlyspringdatatestcontainers.services.BrandService
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PagedResourcesAssembler

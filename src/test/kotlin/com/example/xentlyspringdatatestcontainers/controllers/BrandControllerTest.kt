@@ -1,6 +1,7 @@
 package com.example.xentlyspringdatatestcontainers.controllers
 
-import com.example.xentlyspringdatatestcontainers.BrandService
+import com.example.xentlyspringdatatestcontainers.controllers.assemblers.BrandAssembler
+import com.example.xentlyspringdatatestcontainers.services.BrandService
 import com.example.xentlyspringdatatestcontainers.exceptions.BrandNotFoundException
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import org.hamcrest.Matchers

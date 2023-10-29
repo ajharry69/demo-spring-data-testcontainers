@@ -1,6 +1,7 @@
-package com.example.xentlyspringdatatestcontainers.repositories
+package com.example.xentlyspringdatatestcontainers.datasources.repositories
 
 import com.example.xentlyspringdatatestcontainers.AbstractIntegrationTest
+import com.example.xentlyspringdatatestcontainers.datasources.repositories.BrandSqlRepository
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import org.junit.jupiter.api.Assertions.assertIterableEquals
 import org.junit.jupiter.api.BeforeEach

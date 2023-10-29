@@ -1,4 +1,6 @@
-package com.example.xentlyspringdatatestcontainers.models
+package com.example.xentlyspringdatatestcontainers.models.mappers
+
+import com.example.xentlyspringdatatestcontainers.models.Brand
 
 
 fun Brand.toView(): Brand.View {

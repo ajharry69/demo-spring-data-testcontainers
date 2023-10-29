@@ -1,4 +1,4 @@
-package com.example.xentlyspringdatatestcontainers.repositories
+package com.example.xentlyspringdatatestcontainers.datasources.repositories
 
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import org.springframework.data.domain.Page

@@ -1,8 +1,8 @@
 package com.example.xentlyspringdatatestcontainers.datasources
 
 import com.example.xentlyspringdatatestcontainers.models.Brand
-import com.example.xentlyspringdatatestcontainers.models.toEntity
-import com.example.xentlyspringdatatestcontainers.repositories.BrandSqlRepository
+import com.example.xentlyspringdatatestcontainers.models.mappers.toEntity
+import com.example.xentlyspringdatatestcontainers.datasources.repositories.BrandSqlRepository
 import com.example.xentlyspringdatatestcontainers.slugify
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

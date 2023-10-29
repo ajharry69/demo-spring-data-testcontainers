@@ -1,8 +1,8 @@
 package com.example.xentlyspringdatatestcontainers.datasources
 
 import com.example.xentlyspringdatatestcontainers.models.Brand
-import com.example.xentlyspringdatatestcontainers.models.toDocument
-import com.example.xentlyspringdatatestcontainers.repositories.BrandSearchRepository
+import com.example.xentlyspringdatatestcontainers.models.mappers.toDocument
+import com.example.xentlyspringdatatestcontainers.datasources.repositories.BrandSearchRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull

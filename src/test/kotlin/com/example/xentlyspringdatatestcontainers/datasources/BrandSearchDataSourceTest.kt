@@ -2,7 +2,7 @@ package com.example.xentlyspringdatatestcontainers.datasources
 
 import com.example.xentlyspringdatatestcontainers.ResponseType
 import com.example.xentlyspringdatatestcontainers.models.Brand
-import com.example.xentlyspringdatatestcontainers.repositories.BrandSearchRepository
+import com.example.xentlyspringdatatestcontainers.datasources.repositories.BrandSearchRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

@@ -1,5 +1,6 @@
-package com.example.xentlyspringdatatestcontainers.controllers
+package com.example.xentlyspringdatatestcontainers.controllers.assemblers
 
+import com.example.xentlyspringdatatestcontainers.controllers.BrandController
 import com.example.xentlyspringdatatestcontainers.models.Brand
 import org.springframework.data.domain.PageRequest
 import org.springframework.hateoas.EntityModel
